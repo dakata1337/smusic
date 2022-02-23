@@ -1,0 +1,7 @@
+# C# build folders
+obj
+bin
+
+# IDE folders
+.vscode
+.vs
