@@ -1,0 +1,13 @@
+## Tables
+- Albums
+    - ID : int (key, not-null, auto-increment)
+    - Name : string (not-null)
+- Artists
+    - ID : int (key, not-null, auto-increment)
+    - Name : string (not-null)
+- Genres
+    - ID : int (key, not-null, auto-increment)
+    - Address : string (not-null)
+    - Sales : int (not-null)
+    - GenreID : int (foreign-key, not-null)
+    - *ArtistList (junction-table)
