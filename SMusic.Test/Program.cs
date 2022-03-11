@@ -8,10 +8,13 @@ class Program
         MusicContext context = new MusicContext();
         using (context)
         {
-            foreach (var item in context.Artists) {
-                Console.WriteLine($"{item.Name}");
-                foreach (var album in item.Albums) {
-                    Console.WriteLine($" - {album.Name}");
+            foreach (var album in context.Albums)
+            {
+                Console.WriteLine($"Artists: {string.Join(", ", album.Artists)}");
+                Console.WriteLine($"Songs:");
+                foreach (var song in album.Songs)
+                {
+                    Console.WriteLine($" - {song.Title} | Length {song.Length}");
                 }
             }
         }

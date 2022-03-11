@@ -18,7 +18,21 @@ public class MusicContext : DbContext
             var a1 = CreateArtist("Kanye West");
             var a2 = CreateArtist("Kanye East");
 
-            Albums.Add(CreateAlbum("Crack", new Artist[] { a1, a2 }));
+            CreateAlbum("Meth", new List<Artist> { a1, a2 }, new List<Song> {
+                new() {
+                    Title = "Cooking Meth",
+                    Length = "3.41"
+                },
+                new() {
+                    Title = "Smoking Meth",
+                    Length = "3.11"
+                },
+                new() {
+                    Title = "Being Interrogated By The Police",
+                    Length = "9.10"
+                },
+            });
+
             this.SaveChanges();
         }
     }
@@ -31,11 +45,13 @@ public class MusicContext : DbContext
         return artist;
     }
 
-    private Album CreateAlbum(string albumName, Artist[] artists)
+    private Album CreateAlbum(string albumName, List<Artist> artists, List<Song> songs)
     {
         Album album = new();
         album.Name = albumName;
-        album.Artists = new List<Artist>(artists);
+        album.Artists = artists;
+        album.Songs = songs;
+        Albums.Add(album);
         return album;
     }
 
