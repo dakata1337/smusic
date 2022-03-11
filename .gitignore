@@ -2,6 +2,9 @@
 obj
 bin
 
+# Database
+*.db
+
 # IDE folders
 .vscode
 .vs
