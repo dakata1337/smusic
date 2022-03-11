@@ -2,9 +2,10 @@
 Music Library - Software Development assignment
 
 ## Project architecture
-- SMusic.Core - TODO: document
-- SMusic.Data - TODO: document
-- SMusic.Web  - TODO: document
+- SMusic.Core  - TODO: document
+- SMusic.Data  - TODO: document
+- SMusic.Web   - TODO: document
+- SMusic.Test  - TODO: document
 
 ## Documentation
 To be done
