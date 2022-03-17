@@ -17,4 +17,14 @@ public class Album
     public List<Song> Songs { get; set; }
     public List<Artist> Artists { get; set; }
     public Genre AlbumGenre { get; set; }
+
+    public string GenreToString()
+    {
+        switch (this.AlbumGenre) {
+            case Genre.HipHop:
+                return "Hip-Hop";
+            default:
+                return Enum.GetName(this.AlbumGenre);
+        }
+    }
 }
