@@ -13,8 +13,8 @@ public enum Genre
 public class Album
 {
     public int AlbumId { get; private set; }
-    public string Name { get; set; } = default!;
-    public List<Song> Songs { get; set; } = default!;
-    public List<Artist> Artists { get; set; } = default!;
-    public Genre AlbumGenre { get; set; } = default!;
+    public string Name { get; set; }
+    public List<Song> Songs { get; set; }
+    public List<Artist> Artists { get; set; }
+    public Genre AlbumGenre { get; set; }
 }

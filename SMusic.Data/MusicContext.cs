@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class MusicContext : DbContext
 {
-    public DbSet<Album> Albums { get; set; } = default!;
-    public DbSet<Artist> Artists { get; set; } = default!;
+    public DbSet<Album> Albums { get; set; }
+    public DbSet<Artist> Artists { get; set; }
 
     private static bool _created = false;
     public MusicContext()
