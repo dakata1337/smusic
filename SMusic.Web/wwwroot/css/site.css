@@ -1,0 +1,33 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.album-preview {
+  margin-bottom: 1em;
+}
+.album-preview #length {
+  font-size: 12px;
+}
+.album-preview a:link {
+  font-size: 14px;
+  transition: .3s ease-in-out;
+}
+
+.album-preview ol {
+  margin-bottom: 0;
+}

@@ -1,0 +1,24 @@
+﻿@using SMusic.Data;
+@using SMusic.Data.Models;
+@inject MusicContext _music;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@foreach (Album album in _music.Albums)
+{
+    <div class="album-preview">
+        <h1>@album.Name</h1>
+        <p>@string.Join(", ", album.Artists)</p>
+        <ol>
+            @foreach (var song in album.Songs.Take(5)) {
+                <li>
+                    <a id="title">@song.Title</a>
+                    <a id="length">(@song.Length)</a>
+                </li>
+            }
+        </ol>
+        <a href="albums/@album.AlbumId">See more</a>
+    </div>
+}
