@@ -5,7 +5,9 @@
 @{
     // TODO: actually get the album
     int id = ViewBag.AlbumId;
+    #nullable enable
     Album? album = _music.Albums.Where(x => x.AlbumId == id).FirstOrDefault();
+    #nullable restore
     if (album is null) {
         <h1>Invalid Album ID</h1>
         return;
