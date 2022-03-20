@@ -6,20 +6,89 @@
     ViewData["Title"] = "Home Page";
 }
 
-@foreach (Album album in _music.Albums)
-{
-    <div class="album-preview">
-        <h1>@album.Name</h1>
-        <h3>Monthly listeners: @album.MonthlyListeners</h3>
-        <p>@string.Join(", ", album.Artists)</p>
-        <ol>
-            @foreach (var song in album.Songs.Take(5)) {
-                <li>
-                    <a id="song-title">@song.Title</a>
-                    <a id="song-length">(@song.Length)</a>
-                </li>
-            }
-        </ol>
-        <a asp-action="Albums" asp-route-albumId="@album.AlbumId">See more</a>
-    </div>
-}
+<style>
+    .grid-item {
+        background-color: var(--dark-gray) !important;
+        box-shadow: 5px 5px 15px #1C1E24dd !important;
+        margin: 10px;
+        padding: 10px;
+    }
+    .grid-item:hover {
+        transition: ease-in-out .2s;
+        background-color: var(--dark-gray-hover) !important;
+    }
+    .grid-item #info {
+        @* display: grid; *@
+        float: left;
+    }
+    .grid-item #album-name {
+        text-shadow: 1px 1px var(--purple);
+        font-size: 26px;
+    }
+    .grid-item #album-genre {
+        position: relative;
+        top: -4px;
+        font-size: 10px;
+        border-radius: 7px;
+        padding: 2px;
+        background-color: var(--blue);
+        color: var(--dark-gray-hover);
+    }
+    .grid-item #album-ml {
+        position: relative;
+        top: -4px;
+        font-size: 10px;
+        border-radius: 7px;
+        padding: 2px;
+        background-color: var(--yellow);
+        color: var(--dark-gray-hover);
+    }
+    .grid-item #album-artists {
+        font-size: 16px;
+    }
+    .grid-item #album-cover {
+        max-width: 16em;
+        float: right;
+    }
+
+    .grid-item ol {
+        margin: 0;
+    }
+    .grid-item li {
+        font-size: 14px;
+    }
+
+    .grid {
+        margin: auto;
+        width: 90%;
+        display: grid;
+    }
+
+</style>
+
+<div class="grid">
+    @for (int i = 0; i < 1; i++)
+    {
+        @foreach (Album album in _music.Albums.OrderByDescending(x => x.MonthlyListeners))
+        {
+            <div class="grid-item">
+                <div id="info">
+                    <a id="album-name">@album.Name</a>
+                    <a id="album-genre">@album.GenreToString()</a>
+                    <a id="album-ml">Listeners: @album.MonthlyListenersToString()</a><br>
+                    <a id="album-artists">@string.Join(", ", album.Artists)</a>
+                    <ol>
+                        @foreach (var song in album.Songs.Take(8))
+                        {
+                            <li>
+                                @song.Title <a style="font-size: 12px;">(@song.Length)</a>
+                            </li>
+                        }
+                    </ol>
+                    <a asp-action="Albums" asp-route-albumId="@album.AlbumId">See more</a>
+                </div>
+                <img id="album-cover" src="@album.CoverPath">
+            </div>
+        }
+    }
+</div>

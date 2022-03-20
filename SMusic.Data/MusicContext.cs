@@ -13,13 +13,19 @@ public class MusicContext : DbContext
     {
         if (!_created) {
             _created = true;
+            #if !DEBUG
+            Database.EnsureCreated();
+            #endif
+
+            #if DEBUG
             Database.EnsureDeleted();
             Database.EnsureCreated();
 
             // TODO: maybe load albums from external source?
             var kanyeWest = CreateArtist("Kanye West");
+            var kanyeEast = CreateArtist("Kanye East");
 
-            CreateAlbum("Graduation", Genre.HipHop, new List<Artist> { kanyeWest }, new List<Song> {
+            CreateAlbum("Graduation", Genre.HipHop, new List<Artist> { kanyeWest, kanyeEast }, new List<Song> {
                 new("Good Morning", "3:15"),
                 new("Champion", "2:47"),
                 new("Stronger", "5:11"),
@@ -34,7 +40,7 @@ public class MusicContext : DbContext
                 new("Homecoming", "3:23"),
                 new("Big Brother", "4:47"),
                 new("Good Night", "3:05"),
-            }, _random.Next(100, 10000));
+            }, _random.Next(4_000_000, 20_000_000), "images/kanye-graduation.jpg");
 
             CreateAlbum("The Life Of Pablo", Genre.HipHop, new List<Artist> { kanyeWest }, new List<Song> {
                 new("Ultralight Beam", "5:20"),
@@ -56,9 +62,10 @@ public class MusicContext : DbContext
                 new("Facts (Charlie Heat Version)", "3:20"),
                 new("Fade", "3:13"),
                 new("Saint Pablo", "6:12"),
-            }, _random.Next(100, 7000));
+            }, _random.Next(4_000_000, 20_000_000), "images/kanye-the-life-of-pablo.jpg");
 
             this.SaveChanges();
+            #endif
         }
     }
 
@@ -70,7 +77,7 @@ public class MusicContext : DbContext
         return artist;
     }
 
-    private Album CreateAlbum(string albumName, Genre genre, List<Artist> artists, List<Song> songs, int monthlyListeners)
+    private Album CreateAlbum(string albumName, Genre genre, List<Artist> artists, List<Song> songs, int monthlyListeners, string coverPath)
     {
         Album album = new();
         album.Name = albumName;
@@ -78,6 +85,7 @@ public class MusicContext : DbContext
         album.Artists = artists;
         album.Songs = songs;
         album.MonthlyListeners = monthlyListeners;
+        album.CoverPath = coverPath;
         Albums.Add(album);
         return album;
     }

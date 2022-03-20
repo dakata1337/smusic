@@ -18,6 +18,7 @@ public class Album
     public List<Artist> Artists { get; set; }
     public Genre AlbumGenre { get; set; }
     public int MonthlyListeners { get; set; }
+    public string CoverPath { get; set; }
 
     public string GenreToString()
     {
@@ -27,5 +28,15 @@ public class Album
             default:
                 return Enum.GetName(this.AlbumGenre);
         }
+    }
+
+    public string MonthlyListenersToString()
+    {
+        if (this.MonthlyListeners < 1000)
+            return this.MonthlyListeners.ToString();
+
+        int exp = (int)(Math.Log(this.MonthlyListeners) / Math.Log(1000));
+        int prefix = (int)(this.MonthlyListeners / Math.Pow(1000, exp));
+        return $"{prefix}{"kMGTPE"[exp-1]}";
     }
 }

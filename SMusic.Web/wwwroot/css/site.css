@@ -1,3 +1,16 @@
+:root {
+  --dark-gray:        #1C1E24;
+  --dark-gray-hover:  #1C1E24cc;
+  --gray:             #282C34;
+  --green:            #98BE65;
+  --red:              #FF6C6B;
+  --light-blue:       #73bff2;
+  --blue:             #51AFEF;
+  --yellow:           #ECBE7B;
+  --purple:           #c678dd;
+  --white:            #efefef;
+}
+
 html {
   font-size: 14px;
 }
@@ -17,17 +30,19 @@ body {
   margin-bottom: 60px;
 }
 
-.album-preview {
-  margin-bottom: 1em;
-}
-#song-length {
-  font-size: 12px;
-}
-.album-preview a:link {
-  font-size: 14px;
-  transition: .3s ease-in-out;
+body, header {
+  background-color: var(--gray) !important;
+  color: var(--white) !important;
 }
 
-.album-preview ol {
-  margin-bottom: 0;
+.navbar-brand {
+  font-weight: bold;
+  text-shadow: 1px 1px var(--purple);
+}
+
+a:link, a:visited, a:active {
+  color: var(--blue);
+}
+a:hover {
+  color: var(--light-blue);
 }
