@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class MusicContext : DbContext
 {
+    private static Random _random = new();
     public DbSet<Album> Albums { get; set; }
     public DbSet<Artist> Artists { get; set; }
 
@@ -33,7 +34,7 @@ public class MusicContext : DbContext
                 new("Homecoming", "3:23"),
                 new("Big Brother", "4:47"),
                 new("Good Night", "3:05"),
-            });
+            }, _random.Next(100, 10000));
 
             CreateAlbum("The Life Of Pablo", Genre.HipHop, new List<Artist> { kanyeWest }, new List<Song> {
                 new("Ultralight Beam", "5:20"),
@@ -55,7 +56,7 @@ public class MusicContext : DbContext
                 new("Facts (Charlie Heat Version)", "3:20"),
                 new("Fade", "3:13"),
                 new("Saint Pablo", "6:12"),
-            });
+            }, _random.Next(100, 7000));
 
             this.SaveChanges();
         }
@@ -69,13 +70,14 @@ public class MusicContext : DbContext
         return artist;
     }
 
-    private Album CreateAlbum(string albumName, Genre genre, List<Artist> artists, List<Song> songs)
+    private Album CreateAlbum(string albumName, Genre genre, List<Artist> artists, List<Song> songs, int monthlyListeners)
     {
         Album album = new();
         album.Name = albumName;
         album.AlbumGenre = genre;
         album.Artists = artists;
         album.Songs = songs;
+        album.MonthlyListeners = monthlyListeners;
         Albums.Add(album);
         return album;
     }

@@ -17,6 +17,7 @@ public class Album
     public List<Song> Songs { get; set; }
     public List<Artist> Artists { get; set; }
     public Genre AlbumGenre { get; set; }
+    public int MonthlyListeners { get; set; }
 
     public string GenreToString()
     {

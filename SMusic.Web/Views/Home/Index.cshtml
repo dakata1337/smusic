@@ -10,6 +10,7 @@
 {
     <div class="album-preview">
         <h1>@album.Name</h1>
+        <h3>Monthly listeners: @album.MonthlyListeners</h3>
         <p>@string.Join(", ", album.Artists)</p>
         <ol>
             @foreach (var song in album.Songs.Take(5)) {
