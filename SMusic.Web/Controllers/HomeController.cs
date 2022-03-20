@@ -1,26 +1,27 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SMusic.Web.Models;
+using SMusic.Data;
+using SMusic.Data.Models;
 
 namespace SMusic.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    readonly MusicContext _music;
+    public HomeController(IServiceProvider services)
     {
-        _logger = logger;
+        _music = services.GetRequiredService<MusicContext>();
     }
 
     public IActionResult Index()
     {
+        ViewBag.MostPlayed = _music.Albums.OrderByDescending(x => x.MonthlyListeners).Take(5);
         return View();
     }
 
     public IActionResult Albums(int albumId)
     {
-        ViewBag.AlbumId = albumId;
+        ViewBag.Album = _music.Albums.Where(x => x.AlbumId == albumId).FirstOrDefault();
         return View();
     }
 

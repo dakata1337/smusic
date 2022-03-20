@@ -1,4 +1,4 @@
-namespace SMusic.Web.Models;
+namespace SMusic.Data.Models;
 
 public class ErrorViewModel
 {

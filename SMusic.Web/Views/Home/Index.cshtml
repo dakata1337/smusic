@@ -1,9 +1,11 @@
 ﻿@using SMusic.Data;
 @using SMusic.Data.Models;
+@using Microsoft.EntityFrameworkCore.Query.Internal;
 @inject MusicContext _music;
 
 @{
     ViewData["Title"] = "Home Page";
+    EntityQueryable<Album> MostListened = ViewBag.MostPlayed;
 }
 
 <style>
@@ -18,7 +20,6 @@
         background-color: var(--dark-gray-hover) !important;
     }
     .grid-item #info {
-        @* display: grid; *@
         float: left;
     }
     .grid-item #album-name {
@@ -69,7 +70,7 @@
 <div class="grid">
     @for (int i = 0; i < 1; i++)
     {
-        @foreach (Album album in _music.Albums.OrderByDescending(x => x.MonthlyListeners))
+        @foreach (Album album in MostListened)
         {
             <div class="grid-item">
                 <div id="info">
