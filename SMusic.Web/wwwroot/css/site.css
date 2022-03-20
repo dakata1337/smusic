@@ -20,7 +20,7 @@ body {
 .album-preview {
   margin-bottom: 1em;
 }
-.album-preview #length {
+#song-length {
   font-size: 12px;
 }
 .album-preview a:link {

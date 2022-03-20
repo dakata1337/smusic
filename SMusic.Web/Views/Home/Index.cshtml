@@ -14,11 +14,11 @@
         <ol>
             @foreach (var song in album.Songs.Take(5)) {
                 <li>
-                    <a id="title">@song.Title</a>
-                    <a id="length">(@song.Length)</a>
+                    <a id="song-title">@song.Title</a>
+                    <a id="song-length">(@song.Length)</a>
                 </li>
             }
         </ol>
-        <a href="albums/@album.AlbumId">See more</a>
+        <a asp-action="Albums" asp-route-albumId="@album.AlbumId">See more</a>
     </div>
 }

@@ -1,0 +1,27 @@
+@using SMusic.Data;
+@using SMusic.Data.Models;
+@inject MusicContext _music;
+
+@{
+    // TODO: actually get the album
+    int id = ViewBag.AlbumId;
+    Album? album = _music.Albums.Where(x => x.AlbumId == id).FirstOrDefault();
+    if (album is null) {
+        <h1>Invalid Album ID</h1>
+        return;
+    }
+    ViewData["Title"] = $"{album.Name} - {string.Join(", ", album.Artists)}";
+}
+
+<div class="album">
+    <h1>@album.Name</h1>
+    <p>@string.Join(", ", album.Artists)</p>
+    <ol>
+        @foreach (var song in album.Songs) {
+            <li>
+                <a id="song-title">@song.Title</a>
+                <a id="song-length">(@song.Length)</a>
+            </li>
+        }
+    </ol>
+</div>

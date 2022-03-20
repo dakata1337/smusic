@@ -4,6 +4,7 @@ bin
 
 # Database
 *.db
+*.db-*
 
 # IDE folders
 .vscode
