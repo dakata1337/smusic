@@ -1,7 +1,10 @@
 using SMusic.Data;
+using SMusic.Core;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<MusicContext>();
+builder.Services.AddSingleton<ArtistCore>();
+builder.Services.AddSingleton<AlbumCore>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
