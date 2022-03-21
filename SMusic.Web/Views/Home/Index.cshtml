@@ -82,13 +82,15 @@
                         @foreach (var song in album.Songs.Take(8))
                         {
                             <li>
-                                @song.Title <a style="font-size: 12px;">(@song.Length)</a>
+                                @song.Title <a style="font-size: 12px;">(@song.GetLength())</a>
                             </li>
                         }
                     </ol>
                     <a asp-action="Albums" asp-route-albumId="@album.AlbumId">See more</a>
                 </div>
-                <img id="album-cover" src="@album.CoverPath">
+                <a asp-action="Albums" asp-route-albumId="@album.AlbumId">
+                    <img id="album-cover" src="@album.CoverPath">
+                </a>
             </div>
         }
     }

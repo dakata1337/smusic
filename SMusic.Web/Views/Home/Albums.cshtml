@@ -11,11 +11,12 @@
     <h1>@album.Name</h1>
     <h3>Monthly listeners: @album.MonthlyListeners</h3>
     <p>@string.Join(", ", album.Artists)</p>
+    <p>@album.Songs.Aggregate(TimeSpan.Zero, (t1, t2) => t1.Add(t2.Length))</p>
     <ol>
         @foreach (var song in album.Songs) {
             <li>
                 <a id="song-title">@song.Title</a>
-                <a id="song-length">(@song.Length)</a>
+                <a id="song-length">(@song.GetLength())</a>
             </li>
         }
     </ol>
