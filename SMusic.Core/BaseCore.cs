@@ -10,4 +10,12 @@ public class BaseCore
     {
         _music = services.GetRequiredService<MusicContext>();
     }
+
+    /// <summary>
+    /// <para>Push the staged objects to the remote database.</para>
+    /// </summary>
+    public void SaveChanges()
+    {
+        _music.SaveChanges();
+    }
 }

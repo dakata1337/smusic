@@ -23,7 +23,7 @@ public class HomeController : Controller
 
     public IActionResult Albums(int albumId)
     {
-        ViewBag.Album = _albums.SearchAlbums(albumId).FirstOrDefault();
+        ViewBag.Album = _albums.SearchAlbum(albumId);
         return View();
     }
 
